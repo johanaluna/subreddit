@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="icon" href="static/img/data-analytics.png">
+    <title>Subreddit Recommender</title>
+    <nav id="nav">
+      <ul class="container">
+        <li><a href="https://johanaluna.com">Portfolio</a></li>
+        <li><a href="#contact">Subreddit Documentation</a></li>
+        <!-- <li><a href="documents/Resume2-2.pdf" > RESUME</a></li> -->
+      </ul>
+    </nav>
+  </head>
+  <body>
+    <div class="container">
+      <div class="homecent">
+        <h3>Subreddit Post Recommender</h3>
+        <div class="toright">
+          <h6>This application allows you to find relevant subreddits based on a post entry. After you enter a title and post content, this app vectorizes your post and matches it to subreddits with similar posts. </h6>
+        </div>
+        <br>
+        <form action="{{url_for('search')}}">
+          <div class="form-group">
+            <input class="form-control mr-sm-2" name="title" type="search" placeholder="Enter a subreddit title" aria-label="Search" style="width:500px">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="block" placeholder="Enter the content for a subreddit post" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+          <button class="btn btn-outline-danger" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="me">
+        <p>See more Data Science projects <a href="https://matthewlsessions.com/">here</a></p>
+      </div>
+    </div>
+  </body>
+</html>
