@@ -2,10 +2,12 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
-    <link rel="icon" href="static/img/data-analytics.png">
-    <title>Subreddit Recommender</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../static/css/main.css">
+    
+    <title>Subreddit</title>
+  </head>
+  <body class="is-preload">
     <nav id="nav">
       <ul class="container">
         <li><a href="https://johanaluna.com">Portfolio</a></li>
@@ -13,30 +15,33 @@
         <!-- <li><a href="documents/Resume2-2.pdf" > RESUME</a></li> -->
       </ul>
     </nav>
-  </head>
-  <body>
-    <div class="container">
-      <div class="homecent">
-        <h3>Subreddit Post Recommender</h3>
-        <div class="toright">
-          <h6>This application allows you to find relevant subreddits based on a post entry. After you enter a title and post content, this app vectorizes your post and matches it to subreddits with similar posts. </h6>
+    <article id="top" class="wrapper style1">
+      <div class="container">
+        <div class="row">
+            <div class="col-4 col-5-large col-12-medium">
+                <span class="image fit"><img src="../static/images/1.png" alt="" /></span>
+            </div>
+            <div class="col-8 col-7-large col-12-medium">
+                <header>
+                    <h1><strong>Subreddit Recommender</strong></h1>
+                </header>
+                <p> <strong>Write your post </strong>and find what the most relevant subreddit to <strong> post your content!!</strong><br>
+                </p>
+                <form action="/subreddit">
+                  <div class="form-group">
+                    <input class="form-control mr-sm-2" name="title" type="search" placeholder=" Write a title" aria-label="Search" style="width:500px">
+                  </div><br>
+                  <div class="form-group">
+                    <textarea class="form-control" name="content" placeholder="Write the text of the subreddit" id="text1" rows="3"></textarea>
+                  </div><br>
+                  <button class="btn" type="submit">Search</button>
+                </form>
+                <br><br><br>
+                <p> We have also a full website with tons of puzzles to play online <a href="http://omega2020.netlify.com">(Full Website)</a></p> 
+            </div>
         </div>
-        <br>
-        <form action="{{url_for('search')}}">
-          <div class="form-group">
-            <input class="form-control mr-sm-2" name="title" type="search" placeholder="Enter a subreddit title" aria-label="Search" style="width:500px">
-          </div>
-          <div class="form-group">
-            <textarea class="form-control" name="block" placeholder="Enter the content for a subreddit post" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
-          <button class="btn btn-outline-danger" type="submit">Search</button>
-        </form>
-      </div>
     </div>
-    <div class="footer">
-      <div class="me">
-        <p>See more Data Science projects <a href="https://matthewlsessions.com/">here</a></p>
-      </div>
-    </div>
+    </article>
+   
   </body>
 </html>

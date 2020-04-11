@@ -2,15 +2,13 @@
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 from flask_cors import CORS
 from decouple import config
-from get_data import *
 import joblib
 from model import *
 import pandas as pd
 
 
-app = Flask(__name__)
+app = Flask(__name__,static_url_path="/static/")
 CORS(app)
-
 loadcv = joblib.load('models/tf.joblib')
 loaddf = joblib.load('models/tfarray.joblib')
 loaddf = loaddf.todense()
@@ -22,22 +20,27 @@ def index():
 
 @app.route('/subreddit')
 def search():
-    title = request.args.get('title')
-    block = request.args.get('block')
-    words = title + ' ' + block.strip()
-    data = transform_get(words, loadcv, loaddf)
+
+    subreddit_input = request.args.get('title') + ' ' + request.args.get('content')
+    data = transform_get(subreddit_input, loadcv, loaddf)
     res = get_subreddit_info(data)
 
     return(render_template('search.html', res=res))
 
 @app.route('/test')
 def vals():
-    res = get_subreddit_info([1,6,8,5])
-    return(jsonify(res))
+    """this route lets us test the model directly in the Flask app"""
+    # title, text, link = sorted([request.values['title'],
+    #                                 request.values['text'],
+    #                                 request.values['link']])
+    submission = {"title": 'title', "text": 'text'}
+    model_input = jsonConversion(submission)
+    model_output = transform_get(model_input, loadcv, loaddf)
+    subreddit_list = list_subreddits(model_output)
+    return jsonify(subreddit_list)
 
 # run the app.
 if __name__ == "__main__":
-    # Setting debug to True enables debug output. This line should be
-    # removed before deploying a production app.
+    "Entry point for the falsk app"
     app.debug = True
     app.run()
