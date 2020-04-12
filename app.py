@@ -23,21 +23,31 @@ def search():
 
     subreddit_input = request.args.get('title') + ' ' + request.args.get('content')
     data = transform_get(subreddit_input, loadcv, loaddf)
+    # print(data)
     res = get_subreddit_info(data)
+    # print(res)
 
-    return(render_template('search.html', res=res))
+    return(render_template('result.html', res=res))
 
 @app.route('/test')
+
 def vals():
-    """this route lets us test the model directly in the Flask app"""
-    # title, text, link = sorted([request.values['title'],
-    #                                 request.values['text'],
-    #                                 request.values['link']])
-    submission = {"title": 'title', "text": 'text'}
-    model_input = jsonConversion(submission)
-    model_output = transform_get(model_input, loadcv, loaddf)
-    subreddit_list = list_subreddits(model_output)
-    return jsonify(subreddit_list)
+    res = get_subreddit_info([1,6,8,5])
+    print(res)
+    return(jsonify({'data':res}))
+
+
+# def vals():
+#     """this route lets us test the model directly in the Flask app"""
+#     # title, text, link = sorted([request.values['title'],
+#     #                                 request.values['text'],
+#     #                                 request.values['link']])
+#     submission = {"title": 'title', "text": 'text'}
+#     model_input = jsonConversion(submission)
+#     model_output = transform_get(model_input, loadcv, loaddf)
+#     subreddit_list = list_subreddits(model_output)
+#     return jsonify(subreddit_list)
+
 
 # run the app.
 if __name__ == "__main__":

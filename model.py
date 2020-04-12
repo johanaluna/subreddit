@@ -19,10 +19,10 @@ def get_subreddit_info(array):
     Function written by Matthew/Johana that gets
     subreddit information based on ID numbers
     """
-    
+    print(array)
     client = pymongo.MongoClient(config('SECRET_CODE'))
-    db = client.sfw_db
-    data = [db.sfw_db.find({'sub_id': int(num)})[0] for num in array]
+    db = client.sfw_db.sfw_table
+    data = [db.find_one({'sub_id': int(num)}) for num in array]
     return(data)
 
 def jsonConversion(json_obj):
