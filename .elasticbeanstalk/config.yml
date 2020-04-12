@@ -1,20 +1,22 @@
 branch-defaults:
   master:
-    environment: Subreddit2020-env
+    environment: null
+    group_suffix: null
 environment-defaults:
-  Subreddit2020-env:
+  subredditluna-env1:
     branch: master
     repository: subreddit
 global:
-  application_name: subreddit2020
+  application_name: subreddit20
+  branch: master
   default_ec2_keyname: null
-  default_platform: arn:aws:elasticbeanstalk:us-east-1::platform/Python 3.7 running
-    on 64bit Amazon Linux 2/3.0.0
+  default_platform: python-3.6
   default_region: us-east-1
   include_git_submodules: true
   instance_profile: null
   platform_name: null
   platform_version: null
   profile: eb-cli
+  repository: subreddit20
   sc: git
   workspace_type: Application

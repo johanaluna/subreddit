@@ -7,18 +7,18 @@ from model import *
 import pandas as pd
 
 
-app = Flask(__name__,static_url_path="/static/")
-CORS(app)
+application = Flask(__name__,static_url_path="/static/")
+CORS(application)
 loadcv = joblib.load('models/tf.joblib')
 loaddf = joblib.load('models/tfarray.joblib')
 loaddf = loaddf.todense()
 
 
-@app.route('/')
+@application.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/subreddit')
+@application.route('/subreddit')
 def search():
 
     subreddit_input = request.args.get('title') + ' ' + request.args.get('content')
@@ -29,7 +29,7 @@ def search():
 
     return(render_template('result.html', res=res))
 
-@app.route('/test')
+@application.route('/test')
 
 def vals():
     res = get_subreddit_info([1,6,8,5])
@@ -49,8 +49,8 @@ def vals():
 #     return jsonify(subreddit_list)
 
 
-# run the app.
+# run the application.
 if __name__ == "__main__":
     "Entry point for the falsk app"
-    app.debug = True
-    app.run()
+    application.debug = True
+    application.run()
