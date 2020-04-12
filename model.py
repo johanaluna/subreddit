@@ -20,7 +20,7 @@ def get_subreddit_info(array):
     subreddit information based on ID numbers
     """
     print(array)
-    client = pymongo.MongoClient(config('mongodb+srv://admin:reddit2020@cluster0-jfno6.mongodb.net/test?retryWrites=true&w=majority'))
+    client = pymongo.MongoClient(config('SECRET_CODE'))
     db = client.sfw_db.sfw_table
     data = [db.find_one({'sub_id': int(num)}) for num in array]
     return(data)
